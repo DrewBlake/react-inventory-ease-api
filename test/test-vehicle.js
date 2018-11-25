@@ -24,6 +24,7 @@ describe('/api/vehicles', function () {
   const modelB = 'altima';   
 
   before(function () {
+    this.timeout(10000);
     return runServer(TEST_DATABASE_URL);
   });
 
@@ -53,7 +54,11 @@ describe('/api/vehicles', function () {
                 'vehicleId',
                 'year',
                 'make',
-                'model'
+                'model',
+                'isNew',
+                'id',
+                'parkingSpace',
+                'mileage'
             );
             expect(res.body.vehicleId).to.equal(vehicleId);
             expect(res.body.year).to.equal(year);

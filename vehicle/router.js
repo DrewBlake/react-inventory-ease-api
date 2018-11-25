@@ -10,7 +10,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 router.use(express.json());
 
 // Create new vehicle
-router.post('/', (req,vres) => {
+router.post('/', (req, res) => {
 	let {vehicleId, year, make, model, mileage, parkingSpace} = req.body;
 	return Vehicle.create({
         vehicleId,

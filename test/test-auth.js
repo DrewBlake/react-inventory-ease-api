@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -19,6 +19,7 @@ describe('Auth endpoints', function () {
   const lastName = 'User';
 
   before(function () {
+    this.timeout(10000);
     return runServer(TEST_DATABASE_URL);
   });
 
@@ -232,4 +233,4 @@ describe('Auth endpoints', function () {
         });
     });
   });
-}); */
+}); 
