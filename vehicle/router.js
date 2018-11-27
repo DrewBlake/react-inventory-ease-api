@@ -54,5 +54,26 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// Update vehicle mileage and parking space
+router.put('/:id', (req, res) => {
+	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+	    const message =
+	      `Request path id (${req.params.id}) and request body id ` +
+	      `(${req.body.id}) must match`;
+	    console.error(message);
+	    return res.status(400).json({ message: message });
+  	}
+  	return Vehicle.findByIdAndUpdate(
+      req.params.id, { $set: { mileage: req.body.mileage,
+      						   parkingSpace: req.body.parkingSpace }
+                      })
+                       .then(vehicle => res.status(200).json({
+                        mileage: req.body.mileage,
+                        parkingSpace: req.body.parkingSpace
+                      }))
+                        .catch(err => res.status(500).json({message: "Internal server error"}));
+    
+});
+
 
 module.exports = {router};

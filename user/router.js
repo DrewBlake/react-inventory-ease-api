@@ -138,6 +138,13 @@ router.post('/', (req, res) => {
       }
       res.status(500).json({code: 500, message: 'Internal server error'});
     });
+
+    // Find specific user by id
+router.get('/:id', jwtAuth, (req, res) => {
+  return User.findById(req.params.id)
+    .then(user => res.json(user.serialize()))
+    .catch(err => res.status(500).json({message: 'Internal server error'}));
+  });
 });
 
 module.exports = {router};
