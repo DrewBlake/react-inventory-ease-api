@@ -4,11 +4,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const VehicleSchema = mongoose.Schema({ 
-  vehicleId: {type: String, default: ''},
   year: {type: Number, default: ''},
   make: {type: String, default: ''},
   model: {type: String, default: ''},
-  mileage: {type: Number, default: ''},
+  mileage: {type: String, default: ''},
   newVehicle: {type: Boolean, default: false},
   parkingSpace: {type: String, default: ''}    
 });
@@ -16,12 +15,11 @@ const VehicleSchema = mongoose.Schema({
 VehicleSchema.methods.serialize = function() {
   return {
     id: this._id,
-    vehicleId: this.vehicleId,
     year: this.year,
     make: this.make,
     model: this.model,
     mileage: this.mileage,
-    isNew: this.isNew,
+    newVehicle: this.newVehicle,
     parkingSpace: this.parkingSpace
   };
 };
