@@ -84,30 +84,16 @@ router.put('/:id', jwtAuth, (req, res) => {
 	      `(${req.body.id}) must match`;
 	    return res.status(400).json({ message: message });
   	}
-  //let spaceTaken = Vehicle.find({req.body.parkingSpace}).count();
-  let {parkingSpace, id} = req.body;
-  //let currentCar = Vehicle.find({parkingSpace}).count();
-  //let finalCar = Vehicle.find({parkingSpace: {parkingSpace}, _id: {id}}).count();
-  //console.log(currentCar);
-  console.log('hello');
   
+  let {parkingSpace, id} = req.body;
+ 
   
   return Vehicle.find({parkingSpace}).then((car) => {
 
-      
-      console.log(parkingSpace);
-      console.log(car);
-      //console.log(car[0]._id);
-      //console.log(car[0].parkingSpace);
-      //console.log(id);
       if (car.length > 0) {
         let inputId = id.toString();
-        console.log(inputId);
+       
         let carId = car[0]._id.toString();
-        console.log(carId);
-        //console.log('443csw21' === '443csw21');
-        console.log(carId === inputId);
-        console.log(carId !== inputId);
       
         if (carId !== inputId && car.length > 0) {
           return Promise.reject({
