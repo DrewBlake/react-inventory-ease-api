@@ -24,17 +24,6 @@ describe('/api/vehicles', function () {
   const makeB = 'nissan';
   const modelB = 'altima'; 
 
-  /*beforeEach(function(){
-    User.remove({}).then(() => {
-      User.create ({
-        username: 'test',
-        password: 'testpassword12345'
-      }).then(user => {
-        console.log(user);
-      });
-    });
-  });  */
-
   before(function () {
     this.timeout(10000);
     return runServer(TEST_DATABASE_URL);
@@ -49,20 +38,19 @@ describe('/api/vehicles', function () {
   });
 
   
-
-  describe('POST', function () {
+  describe('/api/vehicles', function () {
+    describe('POST', function () {
 
       it('Should create a new vehicle', function () {
-        return chai.
-        request(app)
+        chai
+        .request(app)
         .post('/api/vehicles')
-        .send({
-            
+        .send({     
             year,
             make,
             model
           })
-        .then(res => {
+          .then(res => {
             expect(res).to.have.status(201);
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.keys(
@@ -84,20 +72,30 @@ describe('/api/vehicles', function () {
           .then(vehicle => {
             expect(vehicle).to.not.be.null;
             expect(vehicle.model).to.equal(model);
+          })
+          .catch(err => {
+            if (err instanceof chai.AssertionError) {
+              throw err;
+            }
           });
       });
     });
 
-  describe('GET', function () {
+    describe('GET', function () {
         it('Should return an empty array initially', function () {
-          return chai.request(app).get('/api/vehicles').then(res => {
+          chai.request(app).get('/api/vehicles').then(res => {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
             expect(res.body).to.have.length(0);
+          })
+          .catch(err => {
+            if (err instanceof chai.AssertionError) {
+              throw err;
+            }
           });
         });
         it('Should return an array of vehicles', function () {
-          return Vehicle.create(
+          Vehicle.create(
             {
               year,
               make,
@@ -120,11 +118,16 @@ describe('/api/vehicles', function () {
               
               expect(res.body[1].year).to.equal(yearB);
               expect(res.body[1].make).to.equal(makeB);
-            });
+            })
+            .catch(err => {
+            if (err instanceof chai.AssertionError) {
+              throw err;
+            }
+          });
         });
       });
 
-  describe('GET with :id', function() {
+    describe('GET with :id', function() {
       it('Should return vehicle with id', function() {
         chai.request(app).get('api/vehicles').then(res => {
           let id = res.body[0].id;
@@ -137,7 +140,7 @@ describe('/api/vehicles', function () {
       });
     });
 
-  describe('DELETE vehicle', function() {
+    describe('DELETE vehicle', function() {
       it('Should delete user by id', function() {
         chai.request(app).get('api/vehicles').then(res => {
           let id = res.body[0].id;
@@ -147,4 +150,5 @@ describe('/api/vehicles', function () {
         });
       });
     });
+  });
 });
