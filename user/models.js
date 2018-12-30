@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+//User schema
 const UserSchema = mongoose.Schema({
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},

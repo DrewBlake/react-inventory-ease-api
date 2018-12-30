@@ -10,7 +10,8 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.use(express.json());
 
-// Post to register a new user
+// Post to register a new user. Returns specific error
+// Recieves data from client to create new user in database
 router.post('/', (req, res) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -140,6 +141,7 @@ router.post('/', (req, res) => {
     });
 
     // Find specific user by id
+    //This is never used by the client not needed by the app
 router.get('/:id', jwtAuth, (req, res) => {
   return User.findById(req.params.id)
     .then(user => res.json(user.serialize()))

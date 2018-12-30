@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+//Vehicle Schema
 const VehicleSchema = mongoose.Schema({ 
   year: {type: Number, default: ''},
   make: {type: String, default: ''},

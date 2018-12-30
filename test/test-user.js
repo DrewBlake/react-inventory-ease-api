@@ -34,6 +34,7 @@ describe('/api/users', function () {
     return User.remove({});
   });
 
+  //Tests server side user functions
   describe('/api/users', function () {
     describe('POST', function () {
       it('Should reject users with missing username', function () {
@@ -436,6 +437,7 @@ describe('/api/users', function () {
       });
    });
 
+  
     describe('GET with :id', function() {
       it('Should return user with id', function() {
         chai.request(app).get('api/users').then(res => {

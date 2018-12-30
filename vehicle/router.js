@@ -9,7 +9,8 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.use(express.json());
 
-// Create new vehicle
+//Creates a new vehicle in the database with info recieved from client
+//Returns specific errors for incorrect or already existing data
 router.post('/', jwtAuth, (req, res) => {
 	let {year, make, model, mileage, parkingSpace, newVehicle} = req.body;
 	console.log(req.body);
