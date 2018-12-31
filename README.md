@@ -1,8 +1,7 @@
 <h1>Inventory-Ease-Api</h1>
 
 <h2>Summary</h2>
-Server side of React Inventory-Ease-Client.  Supplies info from database
-to client side application.
+Server side of React Inventory-Ease-Client. Contains functions to enable CRUD operations for client side application.
 
 <h2>Link to live App</h2>
 <p>Only provides support to client side</p>
